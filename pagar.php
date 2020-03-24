@@ -5,6 +5,7 @@ if (!isset($_POST['producto'], $_POST['precio'])) {
 }
 
 use PayPal\Api\Payer;
+use PayPal\Api\Item;
 
 // echo "<pre>";
 // var_dump($_POST);
@@ -22,4 +23,12 @@ $total = $precio + $envio;
 $compra = new Payer();
 $compra->setPaymentMethod('paypal');
 
-echo $compra->getPaymentMethod();
+//echo $compra->getPaymentMethod();
+
+$articulo = new Item();
+$articulo->setName($producto)
+         ->setCurrency('USD')
+         ->setQuantity(1)
+         ->setPrice($precio);
+
+// echo $articulo->getQuantity();
